@@ -35,7 +35,6 @@ Vertex<W,T>::Vertex(T _id) {
 }
 template <class W,class T>
 Vertex<W,T>::Vertex() {
-    id=0;
     adjList=new AdjacencyList<W, Vertex<W,T> >();
 }
 #include "Vertex.tpp"

@@ -8,10 +8,8 @@ include_directories(.)
 add_executable(Dijkstra
         AdjacencyList.hpp
         AdjacencyList.tpp
-        Couple.hpp
-        Couple.tpp
         Graph.hpp
         Graph.tpp
         main.cpp
         Vertex.hpp
-        Vertex.tpp)
+        Vertex.tpp Heap.tpp Heap.hpp Dijkstra.cpp Dijkstra.hpp Heap_id.cpp Heap_id.hpp)

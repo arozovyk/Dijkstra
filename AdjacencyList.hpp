@@ -7,33 +7,30 @@
 
 #include <iostream>
 #include <vector>
-#include "Couple.hpp"
 
 template<class W, class V>
 class AdjacencyList {
 private:
-    std::vector<Couple<W, V > * >a_List;
+    std::vector< std::pair<W, V> * >a_List;
 public:
     void showList();
-    void addAdjacency(Couple<W,V> * c );
+    void addAdjacency(std::pair<W, V> * );
 };
 
 
 template <class W, class V>
 void AdjacencyList<W,V>::showList() {
 
-    typename std::vector< Couple<W,V> *>::iterator it;
+    typename std::vector< std::pair<W,V>*>::iterator it;
     for(it=a_List.begin();it!= a_List.end();++it){
-        std::cout <<"("<< (*it)->getVertex()<<" - "<<(*it)->getWeight()<<")";
+        std::cout <<"("<< (*it)->second<<" - "<<(*it)->first<<")";
     }
-
 }
-template <class W, class V>
-void AdjacencyList<W,V >::addAdjacency(Couple<W,V> *c) {
 
-    a_List.push_back(c);
+template <class W, class V>
+void AdjacencyList<W,V >::addAdjacency(std::pair<W, V> * p) {
+    a_List.push_back(p);
 }
 
 #include "AdjacencyList.tpp"
-
 #endif //DIJKSTRA_ADJACENCYLIST_HPP

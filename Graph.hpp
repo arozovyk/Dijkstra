@@ -16,7 +16,7 @@ public:
 
     void addEdge(Vertex<W, T> src, Vertex<W, T> dst, W value);
 
-    void addArc(Vertex<W, T> src, Vertex<W, T> dst);
+    void addArc(Vertex<W, T> src, Vertex<W, T> dst, W value);
 
     void removeVertex(Vertex<W, T> v_to_remove);
 
@@ -35,14 +35,14 @@ void Graph<W, T>::addVertex(Vertex<W, T> to_add) {
 }
 
 template<class W, class T>
-void Graph<W, T>::addArc(Vertex<W, T> src, Vertex<W, T> dst) {
-
+void Graph<W, T>::addArc(Vertex<W, T> src, Vertex<W, T> dst, W value) {
+    src.getList()->addAdjacency(new std::pair<W, Vertex<W,T>>  (value,dst));
 }
 
 template<class W, class T>
 void Graph<W, T>::addEdge(Vertex<W, T> src, Vertex<W, T> dst, W value) {
-    src.getList()->addAdjacency( new Couple<W, Vertex<W,T>> (dst,value));
-    dst.getList()->addAdjacency( new Couple<W, Vertex<W,T>> (src,value));
+    src.getList()->addAdjacency(new std::pair<W, Vertex<W,T>> (value,dst));
+    dst.getList()->addAdjacency(new std::pair<W, Vertex<W,T>> (value,src));
 }
 
 
