@@ -11,9 +11,8 @@ template<class D, class V>
 #define pair_dv std::pair<D,V>*
 
 class Heap {
-private:
+protected:
     std::vector<pair_dv> heap;
-    int size;
 public:
     int right_child(int i);
 
@@ -23,7 +22,7 @@ public:
 
     virtual void insert(pair_dv el);
 
-    pair_dv get_root();
+    virtual pair_dv get_root();
 
     virtual void heapify_down(int i);
 
@@ -93,7 +92,6 @@ template<class D, class V>
 void Heap<D, V>::heapify_up(int i) {
     if(i>=0 && parent(i)>=0 && heap[parent(i)]->first > heap[i]->first)
     {
-
         pair_dv tmp=heap[i];
         heap[i]=heap[parent(i)];
         heap[parent(i)]=tmp;

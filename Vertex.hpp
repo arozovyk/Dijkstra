@@ -20,7 +20,45 @@ public:
     AdjacencyList< W,Vertex<W,T> > * getList();
     template <class SW, class ST>
     friend std::ostream & operator <<( std::ostream &os, const Vertex<SW,ST> & vertex );
+    bool operator==(const Vertex<W,T>& other) const
+    {
+
+        return ((*this).id==other.id);
+    }
 };
+
+
+namespace std {
+        template <class W,class T>
+        struct hash<Vertex<W,T>>
+        {
+            std::size_t operator()(const Vertex<W,T>& k) const
+            {
+                using std::size_t;
+                using std::hash;
+                using std::string;
+
+                // Compute individual hash values for first,
+                // second and third and combine them using XOR
+                // and bit shifting:
+
+                return hash<T>()(k.getId());
+            }
+        };
+    
+
+
+}
+
+
+
+
+
+
+
+
+
+
 
 template<class SW, class ST>
 std::ostream & operator <<( std::ostream &os, const Vertex<SW,ST> & vertex ){

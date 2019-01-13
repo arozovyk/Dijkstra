@@ -3,6 +3,7 @@
 #include <cmath>
 #include "Graph.hpp"
 #include "Heap.hpp"
+#include "Heap_id.hpp"
 
 int main() {
     Graph<int,std::string> graph;
@@ -15,6 +16,14 @@ int main() {
     Vertex <int,std::string> d("d");
     Vertex <int,std::string> e("e");
 
+    Heap_id<int,Vertex<int,std::string> > heap_id;
+    heap_id.insert(new std::pair<int, Vertex<int,std::string>>(4,a));
+    heap_id.insert(new std::pair<int, Vertex<int,std::string>>(5,b));
+    heap_id.insert(new std::pair<int, Vertex<int,std::string>>(2,c));
+    heap_id.insert(new std::pair<int, Vertex<int,std::string>>(1,d));
+    heap_id.insert(new std::pair<int, Vertex<int,std::string>>(3,e));
+    heap_id.show();
+/*
     graph.addVertex(a);
     graph.addVertex(b);
     graph.addVertex(c);
@@ -62,7 +71,7 @@ h.get_root();
 h.get_root();
     std::cout<<std::endl;
     h.show();
-
+*/
 
     //std::cout << a << std::endl;
     return 0;
