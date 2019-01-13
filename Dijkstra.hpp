@@ -20,15 +20,14 @@ public:
 
     Dijkstra(Graph<W, T> *);
 
-    std::set<std::pair<int, Vertex<W, T> *> *> exec(Vertex<W, T> &);
+    std::set<std::pair<int, Vertex<W, T> *> *> * exec(Vertex<W, T> &);
 };
 
 template<class W, class T>
-std::set<std::pair<int, Vertex<W, T> *> *> Dijkstra<W, T>::exec(Vertex<W, T> &S) {
+std::set<std::pair<int, Vertex<W, T> *> *> * Dijkstra<W, T>::exec(Vertex<W, T> &S) {
 
-    std::set<std::pair<int, Vertex<W, T> *> *> *resultSet = new std::set<std::pair<int, Vertex<W, T> *> *>();
+    auto *resultSet = new std::set<std::pair<int, Vertex<W, T> *> *>();
     AdjacencyList<W, Vertex<W, T> *> *adjList = S.getList();
-    //adjList->showList();
     int adjSize = adjList->getSize();
     for (int i = 0; i < adjSize; ++i) {
         std::pair<int, Vertex<W, T> *> *adjNode = adjList->getEl(i);
@@ -42,40 +41,42 @@ std::set<std::pair<int, Vertex<W, T> *> *> Dijkstra<W, T>::exec(Vertex<W, T> &S)
     for (auto it = vertices->begin(); it != vertices->end(); ++it) {
         //if not in ajd(S) and not S
         if (!adjList->containsVertex((*it)) && !((*(*it)) == S)) {
-            std::cout << "inserting" << (*(*it)) << std::endl;
             heap->insert(new std::pair<int, Vertex<W, T> *>(INT32_MAX, (*it)));
         }
     }
-    for (auto it = vertices->begin(); it != vertices->end(); ++it) {
-        std::cout << heap->getValue((*it)) << (*(*it)) << "cyka" << std::endl;
-    }
-    heap->show();
-    int graph_v_size = g->getVerticies()->size(), res_set_size = resultSet->size();
+
+    long graph_v_size = g->getVerticies()->size(), res_set_size = resultSet->size();
+
     while (res_set_size != graph_v_size - 1) {
         //dijkstra
+
         std::pair<int, Vertex<W, T> *> *rootMin = heap->get_root();
         adjList = rootMin->second->getList();
-        adjList->showList();
+
         for (int i = 0; i < adjList->getSize(); ++i) {
-            std::pair<int,Vertex<W, T>*> *adj_pair_v_dist = adjList->getEl(i);
-            if (!((*adj_pair_v_dist->second) == S)) {
+             std::pair<int,Vertex<W, T>*> *adj_pair_v_dist = adjList->getEl(i);
 
-                //not start
-                //if(adj_pair_v_dist->first+rootMin->first<=(heap->getValue(adj_pair_v_dist->second)->first )){
-                std::cout<<"mis a jour "<<adj_pair_v_dist->first<<std::endl;
-                //}
+            bool pair_is_in_result= false;
+            for(auto it=resultSet->begin();it!=resultSet->end();++it)
+                if(*(*it)->second==*adj_pair_v_dist->second)
+                    pair_is_in_result=true;
 
+            if (!((*adj_pair_v_dist->second) == S) && !pair_is_in_result) {
+                int index_heap=heap->getValue(adj_pair_v_dist->second);
+                std::pair<int,Vertex<W, T>*> *heapPair=heap->getPair(index_heap);
+
+                if(adj_pair_v_dist->first+rootMin->first<=heapPair->first){
+                    heapPair->first=adj_pair_v_dist->first+rootMin->first;
+                    heap->heapify_up(heap->getValue(heapPair->second));
+                }
             }
         }
-
-        break;
-        //std::cout<< heap->getValue(rootMin->second);
-        //std::cout<<INT32_MAX<<std::endl;
+        resultSet->insert(rootMin);
+        res_set_size++;
 
 
     }
-
-
+    return resultSet;
 }
 
 

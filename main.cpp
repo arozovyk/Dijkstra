@@ -5,9 +5,6 @@
 
 
 int main() {
-    Graph<int,std::string> graph;
-
-   // std::cout<<ds.second;
 
     Vertex <int,std::string> a("a");
     Vertex <int,std::string> b("b");
@@ -16,15 +13,15 @@ int main() {
     Vertex <int,std::string> e("e");
     Vertex <int,std::string> f("f");
     Vertex <int,std::string> g("g");
-    std::cout << a << std::endl;
 
-
+    Graph<int,std::string> graph;
 
     graph.addVertex(&a);
     graph.addVertex(&b);
     graph.addVertex(&c);
     graph.addVertex(&d);
     graph.addVertex(&f);
+    //graph.removeVertex(&f);
     graph.addVertex(&g);
     graph.addVertex(&e);
 
@@ -36,14 +33,17 @@ int main() {
     graph.addEdge(&c,&f,8);
     graph.addEdge(&c,&e,7);
     graph.addEdge(&d,&f,5);
+    //graph.removeEdge(&a,&b);
     graph.showGraph();
 
 
 
      Dijkstra<int,std::string> dijkstra(&graph);
-     dijkstra.exec(b);
+     std::set<std::pair<int,Vertex<int,std::string>*>*> *result= dijkstra.exec(b);
 
+    for(auto it=result->begin();it!=result->end();++it){
+        std::cout<<*(*it)->second << " - " << (*it)->first<<std::endl;
+    }
 
-   // std::cout << a << std::endl;
     return 0;
 }

@@ -51,16 +51,23 @@ void Graph<W, T>::addEdge(Vertex<W, T> * src, Vertex<W, T> *dst, W value) {
 
 template<class W, class T>
 void Graph<W, T>::removeEdge(Vertex<W, T> * src, Vertex<W, T> * dst) {
-
+   src->getList()->remove(dst);
+   dst->getList()->remove(src);
 }
 
 template<class W, class T>
 void Graph<W, T>::removeVertex(Vertex<W, T> * v_to_remove) {
-
+    int i=0;
+    for(auto it=verticies->begin();it!=verticies->end();++it)
+        if((*(*it))==*v_to_remove)break;
+        else
+            i++;
+    verticies->erase(verticies->begin()+i);
 }
 
 template<class W, class T>
 void Graph<W, T>::removeArc(Vertex<W, T> * src, Vertex<W, T> * dst) {
+    src->getList()->remove(dst);
 
 }
 
