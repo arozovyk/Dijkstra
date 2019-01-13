@@ -1,15 +1,17 @@
-cmake_minimum_required(VERSION 3.12)
-project(Dijkstra)
+cmake_minimum_required(VERSION 3.13)
+project(lala11)
 
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories(.)
 
-add_executable(Dijkstra
+add_executable(lala11
         AdjacencyList.hpp
-        AdjacencyList.tpp
+        Dijkstra.cpp
+        Dijkstra.hpp
         Graph.hpp
-        Graph.tpp
+        Heap.hpp
+        Heap_id.cpp
+        Heap_id.hpp
         main.cpp
-        Vertex.hpp
-        Vertex.tpp Heap.tpp Heap.hpp Dijkstra.cpp Dijkstra.hpp Heap_id.cpp Heap_id.hpp)
+        Vertex.hpp)

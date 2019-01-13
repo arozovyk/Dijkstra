@@ -104,7 +104,7 @@ template<class D, class V>
 void Heap<D, V>::show() {
     int i=0;
     for (auto it=heap.begin();it!=heap.end();++it){
-        std::cout << i <<" : " << (*it)->first;
+        std::cout << i <<" : " << (*it)->first << " - "<<*(*it)->second ;
         std::cout << std::endl ;
         i++;
     }

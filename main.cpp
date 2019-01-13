@@ -1,78 +1,49 @@
 #include <iostream>
 #include <string>
 #include <cmath>
-#include "Graph.hpp"
-#include "Heap.hpp"
-#include "Heap_id.hpp"
+#include "Dijkstra.hpp"
+
 
 int main() {
     Graph<int,std::string> graph;
 
    // std::cout<<ds.second;
 
-    Vertex <int,std::string> a("a") ;
+    Vertex <int,std::string> a("a");
     Vertex <int,std::string> b("b");
-    Vertex <int,std::string> c("c") ;
+    Vertex <int,std::string> c("c");
     Vertex <int,std::string> d("d");
     Vertex <int,std::string> e("e");
+    Vertex <int,std::string> f("f");
+    Vertex <int,std::string> g("g");
+    std::cout << a << std::endl;
 
-    Heap_id<int,Vertex<int,std::string> > heap_id;
-    heap_id.insert(new std::pair<int, Vertex<int,std::string>>(4,a));
-    heap_id.insert(new std::pair<int, Vertex<int,std::string>>(5,b));
-    heap_id.insert(new std::pair<int, Vertex<int,std::string>>(2,c));
-    heap_id.insert(new std::pair<int, Vertex<int,std::string>>(1,d));
-    heap_id.insert(new std::pair<int, Vertex<int,std::string>>(3,e));
-    heap_id.show();
-/*
-    graph.addVertex(a);
-    graph.addVertex(b);
-    graph.addVertex(c);
-    graph.addVertex(d);
-    graph.addVertex(e);
 
-    graph.addEdge(a,b,4);
-    graph.addArc(a,c,6);
-    graph.addEdge(a,d,9);
-    graph.addEdge(d,e,1);
+
+    graph.addVertex(&a);
+    graph.addVertex(&b);
+    graph.addVertex(&c);
+    graph.addVertex(&d);
+    graph.addVertex(&f);
+    graph.addVertex(&g);
+    graph.addVertex(&e);
+
+    graph.addEdge(&a,&b,5);
+    graph.addEdge(&b,&g,2);
+    graph.addEdge(&g,&a,1);
+    graph.addEdge(&g,&e,3);
+    graph.addEdge(&g,&d,32);
+    graph.addEdge(&c,&f,8);
+    graph.addEdge(&c,&e,7);
+    graph.addEdge(&d,&f,5);
     graph.showGraph();
 
-    Heap<int , std::string > h ;
-    std::pair<int,std::string> p1(51,"lol");
-    std::pair<int,std::string> p2(36,"aaa");
-    std::pair<int,std::string> p3(14,"bbb");
-    std::pair<int,std::string> p4(32,"cc");
-    std::pair<int,std::string> p5(33,"cc");
-    std::pair<int,std::string> p6(39,"cc");
-    std::pair<int,std::string> pa(17,"cc");
-    std::pair<int,std::string> pb(35,"cc");
-    std::pair<int,std::string> pc(31,"cc");
-    std::pair<int,std::string> pd(30,"cc");
 
-    h.insert(&p1);
-    h.insert(&p2);
-    h.insert(&p3);
-    h.insert(&p4);
-    h.insert(&p5);
-    h.insert(&p6);
-    h.insert(&pa);
-    h.insert(&pb);
-    h.insert(&pc);
-    h.insert(&pd);
-    h.show();
-    h.get_root();
-    std::cout<<std::endl;
-    h.show();
-h.get_root();
-    std::cout<<std::endl;
-    h.show();
-h.get_root();
-    std::cout<<std::endl;
-    h.show();
-h.get_root();
-    std::cout<<std::endl;
-    h.show();
-*/
 
-    //std::cout << a << std::endl;
+     Dijkstra<int,std::string> dijkstra(&graph);
+     dijkstra.exec(b);
+
+
+   // std::cout << a << std::endl;
     return 0;
 }
