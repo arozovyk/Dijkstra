@@ -7,11 +7,11 @@ include_directories(.)
 
 add_executable(lala11
         AdjacencyList.hpp
-        Dijkstra.cpp
+        Dijkstra.tpp
         Dijkstra.hpp
         Graph.hpp
         Heap.hpp
-        Heap_id.cpp
+        Heap_id.tpp
         Heap_id.hpp
         main.cpp
         Vertex.hpp)

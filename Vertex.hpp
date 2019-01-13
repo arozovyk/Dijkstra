@@ -31,34 +31,6 @@ public:
 };
 
 
-namespace std {
-        template <class W,class T>
-        struct hash<Vertex<W,T>*>
-        {
-            std::size_t operator()(const Vertex<W,T>* k) const
-            {
-                using std::hash;
-                return hash<T>()(k->getId());
-            }
-        };
-}
-
-
-template<class SW, class ST>
-std::ostream & operator <<( std::ostream &os, const Vertex<SW,ST> & vertex ){
-   os<<vertex.getId();
-   return os;
-}
-
-template <class W,class T>
-Vertex<W,T>::Vertex(T _id) {
-    id=_id;
-    adjList=new AdjacencyList<W, Vertex<W,T> *>();
-}
-template <class W,class T>
-Vertex<W,T>::Vertex() {
-    adjList=new AdjacencyList<W, Vertex<W,T>* >();
-}
 #include "Vertex.tpp"
 
 
